@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- plugins
 require("lazy").setup("plugins")
+vim.g.theme = "kanagawa"
 
 -- options
 vim.opt.clipboard = "unnamedplus"
@@ -45,6 +46,9 @@ make_transparent()
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = make_transparent,
 })
+
+vim.keymap.set("n", "j", "k", { noremap = true, silent = true })
+vim.keymap.set("n", "k", "j", { noremap = true, silent = true })
 
 -- run file
 vim.keymap.set("n", "<leader>r", function()
