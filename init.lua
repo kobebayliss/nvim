@@ -46,9 +46,20 @@ make_transparent()
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = make_transparent,
 })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "c", "cpp" },
+  callback = function()
+    vim.bo.cindent = false
+    vim.bo.smartindent = false
+    vim.bo.indentexpr = ""
+  end,
+})
 
-vim.keymap.set("n", "j", "k", { noremap = true, silent = true })
-vim.keymap.set("n", "k", "j", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v", "o" }, "j", "k", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v", "o" }, "k", "j", { noremap = true, silent = true })
+vim.opt.cindent = false
+vim.opt.smartindent = false
+vim.opt.autoindent = true
 
 -- run file
 vim.keymap.set("n", "<leader>r", function()
