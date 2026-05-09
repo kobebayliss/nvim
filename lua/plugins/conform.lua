@@ -10,7 +10,11 @@ return {
       cpp = { "clang_format" },
       c = { "clang_format" },
       python = { "black" },
+
       javascript = { "prettier" },
+      javascriptreact = { "prettier" },
+      typescript = { "prettier" },
+      typescriptreact = { "prettier" }, 
     },
   },
 }
