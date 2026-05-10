@@ -43,6 +43,12 @@ end
 
 make_transparent()
 
+vim.lsp.config("clangd", {
+  cmd = { "clangd", "--compile-commands-dir=build" },
+})
+
+vim.lsp.enable("clangd")
+
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = make_transparent,
 })
