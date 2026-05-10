@@ -70,7 +70,7 @@ vim.keymap.set("n", "<leader>r", function()
   local cmd = ""
 
   if ft == "cpp" then
-    cmd = "g++ " .. file .. " -o /tmp/a.out && /tmp/a.out"
+    cmd = "clang++ -std=c++20 " .. file .. " -o /tmp/a.out && /tmp/a.out"
   elseif ft == "c" then
     cmd = "gcc " .. file .. " -o /tmp/a.out && /tmp/a.out"
   elseif ft == "python" then
