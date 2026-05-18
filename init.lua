@@ -69,22 +69,33 @@ vim.opt.autoindent = true
 vim.opt.relativenumber = true
 vim.opt.number = true
 
--- run file
+-- run file (cross-platform)
 vim.keymap.set("n", "<leader>r", function()
-  local file = vim.fn.expand("%")
+  local file = vim.fn.expand("%:p")
   local ft = vim.bo.filetype
   local cmd = ""
 
+  -- cross-platform output path
+  local is_windows = vim.loop.os_uname().sysname:match("Windows")
+  local outdir = vim.fn.stdpath("data")
+
+  local exe = is_windows and (outdir .. "\\a.exe") or (outdir .. "/a.out")
+
   if ft == "cpp" then
-    cmd = "clang++ -std=c++20 " .. file .. " -o /tmp/a.out && /tmp/a.out"
+    cmd = 'clang++ -std=c++20 "' .. file .. '" -o "' .. exe .. '" && "' .. exe .. '"'
+
   elseif ft == "c" then
-    cmd = "gcc " .. file .. " -o /tmp/a.out && /tmp/a.out"
+    cmd = 'gcc "' .. file .. '" -o "' .. exe .. '" && "' .. exe .. '"'
+
   elseif ft == "python" then
-    cmd = "python3 " .. file
+    cmd = "python3 \"" .. file .. "\""
+
   elseif ft == "javascript" then
-    cmd = "node " .. file
+    cmd = "node \"" .. file .. "\""
+
   elseif ft == "sh" then
-    cmd = "bash " .. file
+    cmd = "bash \"" .. file .. "\""
+
   else
     print("No runner: " .. ft)
     return
@@ -92,4 +103,3 @@ vim.keymap.set("n", "<leader>r", function()
 
   vim.cmd("split | terminal " .. cmd)
 end)
-
