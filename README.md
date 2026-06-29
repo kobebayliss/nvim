@@ -26,7 +26,7 @@ mv ~/.config/nvim ~/.config/nvim.bak
 then clone:
 
 ```bash
-git clone https://github.com/yourusername/nvim-config ~/.config/nvim
+git clone https://github.com/kobebayliss/nvim-config ~/.config/nvim
 ```
 
 open neovim — everything installs on first launch
