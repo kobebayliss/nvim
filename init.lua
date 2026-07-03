@@ -83,7 +83,7 @@ vim.keymap.set("n", "<leader>r", function()
   local exe = is_windows and (outdir .. "\\a.exe") or (outdir .. "/a.out")
 
   if ft == "cpp" then
-    cmd = 'clang++ -std=c++20 "' .. file .. '" -o "' .. exe .. '" && "' .. exe .. '"'
+    cmd = 'g++ -std=c++20 "' .. file .. '" -o "' .. exe .. '" && "' .. exe .. '"'
 
   elseif ft == "c" then
     cmd = 'gcc "' .. file .. '" -o "' .. exe .. '" && "' .. exe .. '"'
