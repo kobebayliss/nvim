@@ -7,8 +7,6 @@ return {
       lsp_fallback = true,
     },
     formatters_by_ft = {
-      cpp = { "clang_format" },
-      c = { "clang_format" },
       python = { "black" },
       javascript = { "prettier" },
       javascriptreact = { "prettier" },
