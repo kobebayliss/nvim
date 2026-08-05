@@ -81,10 +81,11 @@ vim.keymap.set("n", "<leader>r", function()
   local outdir = vim.fn.stdpath("data")
 
   local exe = is_windows and (outdir .. "\\a.exe") or (outdir .. "/a.out")
-
   if ft == "cpp" then
-    cmd = 'g++ -std=c++20 "' .. file .. '" -o "' .. exe .. '" && "' .. exe .. '"'
-
+    local root = vim.fs.dirname(vim.fs.find("CMakeLists.txt", { upward = true })[1])
+    local project = vim.fn.fnamemodify(root, ":t")
+    cmd = "cd " .. root .. " && cmake --build build >/dev/null && ./build/" .. project
+    
   elseif ft == "c" then
     cmd = 'gcc "' .. file .. '" -o "' .. exe .. '" && "' .. exe .. '"'
 
