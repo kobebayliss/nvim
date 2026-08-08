@@ -64,6 +64,9 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.keymap.set({ "n", "v", "o" }, "j", "k", { noremap = true, silent = true })
 vim.keymap.set({ "n", "v", "o" }, "k", "j", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>e", ":Neotree toggle<CR>", { desc = "Toggle Neo-tree" })
+vim.keymap.set("n", "<leader>n", "<C-w>w", {
+    desc = "Cycle windows",
+})
 vim.opt.cindent = true
 vim.opt.smartindent = false
 vim.opt.autoindent = true
